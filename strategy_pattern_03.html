@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Strategy Pattern 3</title>
+</head>
+<style type="text/css">
+		body{
+			max-width: 760px;
+			color: #364f6b;
+			margin: 0.5rem;
+
+		}
+	 .basic{
+	 	.background-color: #fdfdfd;
+	 }
+	 .container {
+	 	display: flex;
+	 	flex-direction: column;
+	 	justify-content: center;
+
+	 }
+</style>
+<body>
+	<h1>Strategy Pattern Case 3 </h1>
+	<div class="basic" >
+		Here we are creating an option  where you can choose different payment options:
+		 <div>
+		 	 <ul>
+		 	 	<li>Mastercard Payment</li>		 	 	
+				<li>Visacard Payment</li>
+		 	 	<li>Paypal   Payment</li>
+		 	 	
+		 	 </ul>
+		 </div> 
+
+	</div>
+	 <div class="container">
+	 	 <div style="padding-left:0.6rem;"> <input type="radio" name="card" value="Mastercard" onclick="makePayment(this)" /> Mastercard </div>
+	 	 <div style="padding-left:0.6rem;"> <input type="radio" name="card" value="Visacard" onclick="makePayment(this)" /> Visacard </div>
+	 	 <div style="padding-left:0.6rem;"> <input type="radio" name="card" value="Paypal" onclick="makePayment(this)" /> Paypal </div>
+	 	 
+	 </div>
+	  <div style="font-size: 1rem; padding: 1rem; font-weight: bold;">
+	  		<p id="result">Result:  </p>
+	  	
+	  </div>
+	  <script type="text/javascript"> 
+	  	var displayPrice= function (price, cardName){
+	  			var id =document.getElementById("result");
+	  		 	 id.innerHTML = "Result: You are paying with "+ cardName+" and price is: "+price +" Euro.";	  		
+
+	  		}
+	  	var payStrategy = {
+	  		"Mastercard": ()=>displayPrice(100, "Mastercard"),
+	  		"Visacard": ()=> displayPrice(100, "Visacard"),
+	  		"Paypal":  ()=>displayPrice(100, "Paypal"),
+	  		
+	  			 
+	  	}
+	  	var payManager =function (key, price){ 
+	  		 payStrategy[key](price);
+
+	  	}
+	  	function makePayment(obj){
+	  		payManager(obj.value, 100);
+	  	}
+	  </script> 
+
+</body>
+</html>
