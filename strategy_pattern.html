@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Strategy Pattern Principle</title>
+	<style type="text/css">
+		body{
+			max-width: 760px;
+			color: #364f6b;
+
+		}
+		p{
+			font-size:1rem; 
+			text-align: center; 
+			border: 1px;
+			font-weight: bold;
+			color: #364f6b;
+			margin: 2px;
+		}
+		h1{
+
+			text-align: center; 
+			font-size: 2rem;
+			color: black;
+
+		}	
+		
+	</style>
+</head>
+<body>
+	 <h1>Strategy Pattern Principle </h1>	
+	 <div>
+	 	Here you pass different algorithm or strategy or  actions as functions argument  in class and then  get the result by using 
+	 	the strategy based on your choice. In the following example, you pass any of the action (addition, substraction, multiply and divide) as function argument and derive the result of two numbers.  
+	 </div> 
+	<div>
+	 	<p id="add" > </p>
+		<p id="substract" > </p>
+		<p id="multiply" > </p>
+		<p id="divide" > </p>
+	 	
+	 </div>
+
+	<!-- javascript --> 
+	<script type="text/javascript">
+		function Addition (){
+			this.calculate =function(a,b){
+				return a+b
+			}
+		}
+		function Substraction (){
+			this.calculate= function (a,b){
+				return a-b
+			}
+		}
+		function Multiplication(){
+			this.calculate =function(a,b){
+				return a*b
+			}
+		}
+		function Division (){
+			this.calculate =function (a,b) {
+				return a/b; 
+			}
+		}
+		function Context(strategy){
+			this.strategy =strategy;
+			this.calculate=function(a,b){
+				return this.strategy.calculate(a,b);
+			}
+		}
+		/**
+		* @strategy: Addition 
+		*/
+		var context =new Context(new Addition); 
+		var result = context.calculate(4,2);
+		document.getElementById("add").innerHTML= "Addition: "+result ;
+		/** 
+			@Strategy: Substraction 
+		*/
+		context = new Context(new Substraction);
+		result = context.calculate(4,2)
+		document.getElementById("substract").innerHTML ="Substraction: "+result;
+
+		/** 
+			@Strategy: Divide 
+		*/
+		context = new Context(new Division);
+		result = context.calculate(4,2)
+		document.getElementById("divide").innerHTML ="Division: "+result;
+
+		
+		/** 
+			@Strategy: Multiplication  
+		*/
+		context = new Context(new Multiplication);
+		result = context.calculate(4,2)
+		document.getElementById("multiply").innerHTML ="Multiplication: "+result;
+		
+	</script>
+
+</body>
+</html>
