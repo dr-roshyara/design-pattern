@@ -1,6 +1,6 @@
 In this repo, we will describe different basic examples of design patterns 
 so that we can have a better understanding in it. We use Javascript to  illustrate the examples. 
-## Factory Method 
+## Factory Method  
 * [HTML View of Factory Pattern](https://htmlpreview.github.io/?https://github.com/mathematikboy/design-pattern/blob/main/factory_method1.html)
 
 ## Strategy Pattern 
