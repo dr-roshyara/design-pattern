@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Factory Method</title>
+</head>
+<body>
+<p>The job of a factory function is to return an object.Look at the  javascript code and the console to understand the factry method in javascript. </p>
+ <div >
+ 	<p>Some other exampeles are given in:</p> 
+ 	<ul> 
+ 		<li><a href="https://www.oreilly.com/library/view/learning-javascript-design/9781449334840/ch09s10.html">example 1 </a></li>
+ 		<li><a href="https://www.digitalocean.com/community/tutorials/js-factory-pattern"> Example2</a></li>
+ 	</ul>
+
+
+ </div>
+
+	<script type="text/javascript">
+		var person ={
+			"firstName":"Krisna",
+			"lastName": "Sharma"
+		};
+	//We would like to create a Person 
+	 const createPerson= (obj) => { 
+	 	//obj =JSON.stringify(obj)	 	
+	 	obj.speak= ()=>{return alert('My Name is : '+person.firstName+' '+person.lastName)}
+	 	return person;  
+	 };
+	var krishna =createPerson(person);
+	krishna.speak()
+ //The above example is a basic factory method. 
+ /***
+ 	*Let's use the factory method. 
+ */	
+ 	const TEACHER_TYPE ={
+ 		MATH: 	'math',
+ 		MUSIC: 	'music',
+ 		CODING: 'coding'
+
+ 	}
+ 	//Teacher 
+ 	class Teacher{
+ 		constructor(properties){
+ 			this.name 			= properties.name;
+ 			this.subject 		=properties.subject;
+ 
+ 		}
+
+ 	}
+ 	//class MathTeacher:
+ 	class MathTeacher extends Teacher{
+ 		constructor (properties){
+ 			super(properties);
+ 			this.specialization =properties.specialization
+ 		}
+
+ 	}
+
+ 	//class music Teacher 
+ 	class MusicTeacher extends Teacher {
+ 		constructor(properties){
+ 			 super(properties);
+ 			 this.instrument     =properties.instrument 
+
+ 		}
+ 	}
+ 	 	//Abstraction 
+ 	class CodingTeacher extends Teacher{
+ 		constructor(properties){
+ 			super(properties);
+ 			this.programmingLanguage =properties.programmingLanguage;
+ 		}
+ 	}
+ 	// class TeacherFactory
+ 	/***
+ 	   *Teacher factory gives you a teacher depending on what type of 
+ 	   **teacher you want to produce. If you give the teacher type MATH 
+ 	   **this will give a MATH teacher , if you want a music teacher then the factory will produce a math teacher. 
+ 	   **
+ 	*/
+ 	class TeacherFactory{
+ 		static getTeacher(type,properties){
+ 		  switch(type)
+ 		  {
+ 			case TEACHER_TYPE.MATH:	
+ 				return new MathTeacher(properties)
+ 			case TEACHER_TYPE.MUSIC:
+ 				return new MusicTeacher(properties)
+ 			case TEACHER_TYPE.CODING:
+ 			return new CodingTeacher(properties)
+ 			default: new Error("Wrong Teacher type choosen");	
+ 		  }
+ 			
+ 		}
+ 	} 
+ 	const codingTeacher =TeacherFactory.getTeacher('coding',{
+ 		name: 'krishna',
+ 		subject:'Computer Science',
+ 		programmingLanguage: 'javascript'
+ 	});
+ 	const gitarTeacher =TeacherFactory.getTeacher('music',{
+ 		name: "Bishnu",
+ 		subject: "Gitar",
+ 		instrument: 'Gitar'
+ 	});
+ 	const algebraTeacher =TeacherFactory.getTeacher('math',{
+ 		name: 'krishna',
+ 		subject:'Math',
+ 		specialization: 'Algebra'
+ 	});
+ 	console.log(codingTeacher);
+	console.log(gitarTeacher);
+ 	console.log(algebraTeacher);
+
+
+	</script>
+
+
+</body>
+</html>
