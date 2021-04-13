@@ -1,0 +1,83 @@
+ <!DOCTYPE html>
+ <html>
+ <head>
+ 	<title>Singleton method</title>
+ </head>
+ <body>
+ <p>Singleton pattern means having only one instance. The goald of singleton class is to privide global access to a class that is restricted into one instance. In case of javascript, we can take Userstore as a singleton object. The singleton object has the following character</p>
+  <ul>
+  	<li> We need to check if it already exists to avoid the double instance</li>
+  	<li>Make constructor as private so that we can't instantiate outside </li>
+  	<li> Instantiate the singleton class in a static function </li>
+  </ul>
+  In javascript default  is that properties are public. However in coming version, private properties are also allowed that they can be smbolized by the notion ,,#"".
+  <div> 
+  	<h2>Use of Object.freeze Method </h2> 
+  The Object.freeze() method freezes an object. A frozen object can no longer be changed; freezing an object prevents new properties from being added to it, existing properties from being removed, prevents changing the enumerability, configurability, or writability of existing properties, and prevents the values of existing properties from being changed. In addition, freezing an object also prevents its prototype from being changed. freeze() returns the same object that was passed in.
+ </div>
+
+    <script type="text/javascript">
+    	const _data =[];
+    	const Userstore ={
+    		add : item =>_data.push(item);
+    		get: id =>_data.find(item= >item.id ===id);
+    	}
+    	Object.freeze(Userstore);
+    	export default Userstore;
+    //other example 
+    
+		var mySingleton = (function () {
+
+		  // Instance stores a reference to the Singleton
+		  var instance;
+
+		  function init() {
+
+		    // Singleton
+
+		    // Private methods and variables
+		    function privateMethod(){
+		        console.log( "I am private" );
+		    }
+
+		    var privateVariable = "Im also private";
+
+		    return {
+
+		      // Public methods and variables
+		      publicMethod: function () {
+		        console.log( "The public can see me!" );
+		      },
+
+		      publicProperty: "I am also public"
+		    };
+
+		  };
+
+		  return {
+
+		    // Get the Singleton instance if one exists
+		    // or create one if it doesn't
+		    getInstance: function () {
+
+		      if ( !instance ) {
+		        instance = init();
+		      }
+
+		      return instance;
+		    }
+
+		  };
+
+		})();
+
+		// Usage:
+
+		var singleA = mySingleton.getInstance();
+		var singleB = mySingleton.getInstance();
+		console.log( singleA === singleB ); // true
+			
+    </script>
+
+ </body>
+ </html>
