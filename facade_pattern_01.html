@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Facade Pattern</title>
+</head>
+<body>
+Facade Pattern can be simply explained by an action of ordering food in a restaurant. When you as a client, buy or order  food at a restaurant for delevery service, you just need to order the food and pay the bill. The rest of thing will happen automatically. For you, its not necessary to know the whole process , who is printing the bill, who is cooking, who is packing the food and who makes the delevery. All these Subsystems are  not  the topics of your interest. Facade pattern does not add any further action or behaviours. It just hides the subsystems from the client. All the subsystems whose details are not necessary for the client are hidden by the facade.
+ <ul>
+ 	<li> Create a facade class which hides all the subsystem from you and gives you a nice user friendly option.</li>
+ 	<li></li>
+ </ul> 
+ <script type="text/javascript">
+ 	let orderNumber = 0;
+
+class PlaceFoodOrder {
+  placeOrder(orderDetails) {
+    const orderId = PlaceFoodOrder.generateId();
+    let chef;
+    if (orderDetails.foodType === 'Main Course') {
+      chef = new MainCourseChef();
+    } else if (orderDetails.foodType == 'Dessert') {
+      chef = new DessertChef();
+    }
+    return chef.addFoodOrder({ orderId, orderDetails });
+  }
+
+  static generateId() {
+    return ++orderNumber;
+  }
+}
+
+class FoodOrders {
+  constructor() {
+    this.orders = [];
+  }
+
+  addFoodOrder(order) {
+    this.orders.push(order);
+    return this.conveyOrder(order);
+  }
+
+  timetoMakeOrder(){}
+  conveyOrder(order) {}
+}
+
+class MainCourseChef extends FoodOrders {
+  constructor() {
+    super()
+    this.assigned = true
+    return this;
+  }
+
+  timetoMakeOrder(){
+    return Math.floor(Math.random() * 50) + 10  
+  }
+
+  conveyOrder({orderId,orderDetails}) {
+    const time = this.timetoMakeOrder()
+    console.log( `Order number ${orderId}: ${orderDetails.foodDetails} will be served in ${time} minutes.`);
+  }
+}
+
+class DessertChef extends FoodOrders {
+  constructor() {
+    super()
+    this.assigned = true;
+    return this;
+  }
+ 
+  timetoMakeOrder(){
+    return Math.floor(Math.random() * 30) + 10  
+  }
+
+  conveyOrder({ orderId, orderDetails }) {
+    const time = this.timetoMakeOrder()
+    console.log( `Order number ${orderId}: ${orderDetails.foodDetails} will be served in ${time} minutes.`);
+  }
+}
+
+
+const customer = new PlaceFoodOrder();
+const order1 = customer.placeOrder({foodType: "Main Course", foodDetails: "Pasta with Shrimps"});
+const order2 = customer.placeOrder({foodType: "Dessert", foodDetails: "Molten Lava Cake"});
+ </script>
+</body>
+</html>
