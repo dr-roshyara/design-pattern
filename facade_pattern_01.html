@@ -58,7 +58,7 @@ class MainCourseChef extends FoodOrders {
     const time = this.timetoMakeOrder()
     let stmt =`Order number ${orderId}: ${orderDetails.foodDetails} will be served in ${time} minutes.`
     console.log( stmt);
-    alert(stmt)
+    alert(stmt);
   }
 }
 
@@ -77,9 +77,9 @@ class DessertChef extends FoodOrders {
     const time = this.timetoMakeOrder()
 	let stmt= `Order number ${orderId}: ${orderDetails.foodDetails} will be served in ${time} minutes.`;
      console.log( stmt);
-    alert(stmt)
+    alert(stmt);
   }
-}
+} 
 
 
 const customer = new PlaceFoodOrder();
