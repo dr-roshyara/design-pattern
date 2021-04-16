@@ -1,8 +1,11 @@
 In this repo, we will describe different basic examples of design patterns 
 so that we can have a better understanding in it. We use Javascript to  illustrate the examples. 
+## Composite Method  
+* [HTML View of Factory Pattern](https://htmlpreview.github.io/?https://github.com/mathematikboy/design-pattern/blob/main/composite_pattern.html)
+## Adapter Method  
+* [HTML View of Factory Pattern](https://htmlpreview.github.io/?https://github.com/mathematikboy/design-pattern/blob/main/adapater_pattern.html)
 ## Factory Method  
 * [HTML View of Factory Pattern](https://htmlpreview.github.io/?https://github.com/mathematikboy/design-pattern/blob/main/factory_method1.html)
-
 ## Facade Pattern 
 * [HTML view of Facade Pattern](https://htmlpreview.github.io/?https://github.com/dr-roshyara/design-pattern/blob/main/facade_pattern_01.html)
 ## Strategy Pattern 
