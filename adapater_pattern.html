@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Decorator  Pattern</title>
+</head>
+<body>
+<div style ="padding:12px;  font-weight:600 ;"> 
+ In the following example, we take Simple inspection as Basic service.  Then all the other services are considered as the decorator on the top of the basic service. That means, you can decorate any other number of services on top of the other service. 
+</div>
+
+<script type="text/javascript">
+		  class BasicService {		  	 
+		  	  constructor (){
+		  	  	this.price =25.5;
+		  	  	this.name ="Basic Service"
+		  	  }
+		  	  getPrice (){
+		  	  	return this.price; 
+		  	  }
+		  	  getName (){
+		  	  	return this.name;
+		  	  }
+		  }
+		 class OilService extends BasicService{
+		 	constructor( bs){
+		 		super(bs);
+		 		this.bs =bs; 
+		 		this.price = 15+ bs.getPrice();
+		 		this.name= bs.getName()+",  Oil Service";
+		 	}
+	
+		 }
+		class TireService extends BasicService{
+		 	constructor( bs){
+		 		super(bs);
+		 		this.bs =bs; 
+		 		this.price =20 +bs.getPrice();
+		 		this.name= bs.getName()+ ", Tire Service"
+		 	}
+
+		 }
+	//	  
+	let myService1 =new BasicService()
+	alert(myService1.getName()+": " + myService1.getPrice())
+		//Now adding decorator 
+	myService2 =new OilService(myService1);
+	// alert(myService2.getPrice())
+	alert(myService2.getName()+ ": "+myService2.getPrice())
+	//Now adding decorator 
+	myService2 =new TireService(myService2);
+	// alert(myService2.getPrice())
+	alert(myService2.getName()+": "+myService2.getPrice())	
+	//
+	myService3 =new TireService(myService1);
+	// alert(myService2.getPrice())
+	alert(myService3.getName()+": "+myService3.getPrice())	
+	//
+		
+		 
+	</script>
+
+</body>
+</html>
